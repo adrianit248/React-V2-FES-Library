@@ -1,8 +1,9 @@
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
+
 const Book = ({book}) => {
-    const starRating = book.rating
+    const starRating = parseInt(book.rating)
 
   return (
     <div className="book">

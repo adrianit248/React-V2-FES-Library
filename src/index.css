@@ -547,6 +547,14 @@ select {
   animation: rotate 600ms infinite linear;
 }
 
+.fa-star {
+  color: #fabf2a;
+}
+
+.fa-star-half-stroke {
+  color: #fabf2a;
+}
+
 @keyframes rotate {
   0% {
     transform: rotate(0);

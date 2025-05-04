@@ -3,7 +3,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 
 const Book = ({book}) => {
-    const starRating = parseInt(book.rating)
 
   return (
     <div className="book">
@@ -19,7 +18,13 @@ const Book = ({book}) => {
 
         <div className="book__rating">
             {
-                new Array(starRating).fill(0).map((_, index) => <FontAwesomeIcon icon="star" key={index} />)
+                new Array(Math.floor(book.rating)).fill(0).map((_, index) => <FontAwesomeIcon icon="star" key={index} />)
+            }
+
+            {
+                Number.isInteger(book.rating)
+                    ? ""
+                    : <FontAwesomeIcon icon="star-half-alt" />
             }
         </div>
 

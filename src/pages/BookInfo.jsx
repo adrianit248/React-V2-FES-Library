@@ -8,14 +8,16 @@ import Book from '../components/ui/Book'
 const BookInfo = ({books, addToCart, cart}) => {
     const {id} = useParams()
     const book = books.find((book) => +book.id === +id)
+    const [added, setAdded] = useState(false)
 
     function addBookToCart(book) {
+        setAdded(+book.id === +id)
         addToCart(book)
     }
 
-    function bookExistsOnCart() {
-        return cart.find((book) => book.id === +id)
-    }
+    // function bookExistsOnCart() {
+    //     return cart && cart.find(book => book.id === +id)
+    // }
 
   return (
     <div id="books__body">
@@ -56,11 +58,26 @@ const BookInfo = ({books, addToCart, cart}) => {
                                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Error molestiae reprehenderit repellendus, accusamus, sunt corporis, aliquam eaque voluptatibus quas iusto quae iste ipsa. Facere est blanditiis error accusantium enim eaque!
                                 </p>
                             </div>
-                            {
-                                bookExistsOnCart() 
-                                ? <Link to={`/cart`} className="book__link"><button className="btn">Checkout</button></Link>
-                                : <button className='btn' onClick={() => addBookToCart(book)}>Add to cart</button>
-                            }
+
+                            {added ? (
+                                <Link to={`/cart`} className="book__link">
+                                    <button className="btn">Checkout</button>
+                                </Link>
+                            ) : (
+                                <button className='btn' onClick={() => addBookToCart(book)}>
+                                    Add to cart
+                                </button>
+                            )}
+
+                            {/* {bookExistsOnCart() ? (
+                                <Link to={`/cart`} className="book__link">
+                                    <button className="btn">Checkout</button>
+                                </Link>
+                            ) : (
+                                <button className='btn' onClick={() => addBookToCart(book)}>
+                                    Add to cart
+                                </button>
+                            )} */}
                             
                         </div>
                     </div>
